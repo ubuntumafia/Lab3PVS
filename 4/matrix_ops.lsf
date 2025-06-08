@@ -1,0 +1,16 @@
+#!/bin/bash
+#BSUB -J MPI_Matrix_Ops
+#BSUB -W 00:30
+#BSUB -n 4
+#BSUB -R "span[ptile=1]"
+#BSUB -oo output_%J.out
+#BSUB -eo error_%J.err
+
+module load mpi/openmpi-x86_64
+
+ROWS=1000
+COLS=1000
+RUNS=10
+
+echo "=== Running matrix operations with ${ROWS}x${COLS} matrix ==="
+./run_mpi_matrix.sh 4 $ROWS $COLS $RUNS
