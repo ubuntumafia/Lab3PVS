@@ -1,0 +1,20 @@
+#!/bin/bash
+#BSUB -J MPI_Bubble_Job
+#BSUB -W 00:30
+#BSUB -n 2
+#BSUB -R "span[ptile=1]"
+#BSUB -oo output_%J.out
+#BSUB -eo error_%J.err
+
+module load mpi/openmpi-x86_64
+
+RANKS=2
+ELEMENTS=1200000
+
+if [[ ! -x ./run_mpi_bubble.sh ]]; then
+  echo "Ошибка: run_mpi_bubble.sh не найден или не исполняем" >&2
+  exit 1
+fi
+
+echo "=== Запуск пузырьковой сортировки MPI: $ELEMENTS элементов на $RANKS рангах ==="
+./run_mpi_bubble.sh $RANKS $ELEMENTS
