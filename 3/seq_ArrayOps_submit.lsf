@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#BSUB -J SEQ_ArrayOps
+#BSUB -P lab3
+#BSUB -W 00:20
+#BSUB -n 1
+#BSUB -oo output_seq_arrayops_%J.out
+#BSUB -eo error_seq_arrayops_%J.err
+
+# Параметры
+ARRAY_SIZE=1000000
+NUM_RUNS=100
+
+./run_seq_arrayops.sh $ARRAY_SIZE $NUM_RUNS

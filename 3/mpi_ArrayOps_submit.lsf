@@ -1,0 +1,15 @@
+#!/bin/bash
+#BSUB -J MPI_ArrayOps
+#BSUB -W 00:30
+#BSUB -n 4
+#BSUB -R "span[ptile=1]"
+#BSUB -oo output_arrayops_%J.out
+#BSUB -eo error_arrayops_%J.err
+
+module load mpi/openmpi-x86_64
+
+# Параметры
+RANKS=4
+ELEMENTS=1000000
+
+./run_mpi_arrayops.sh $RANKS $ELEMENTS
